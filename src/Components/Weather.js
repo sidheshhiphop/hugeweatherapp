@@ -142,8 +142,8 @@ const Weather = () => {
               }}
             >
               <img
-              className="h-8"
-              style={{ borderRadius: "100%",  }}
+                className="h-8"
+                style={{ borderRadius: "100%" }}
                 src="https://img.icons8.com/?size=256&id=HwGBDTAiOecf&format=png"
               />
               <div>
@@ -161,8 +161,8 @@ const Weather = () => {
               }}
             >
               <img
-                 className="h-8"
-                 style={{ borderRadius: "100%",  }}
+                className="h-8"
+                style={{ borderRadius: "100%" }}
                 src="  https://img.icons8.com/?size=256&id=51497&format=png"
               />
               <div>
@@ -181,8 +181,8 @@ const Weather = () => {
               style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
             >
               <img
-              className="h-8"
-                style={{ borderRadius: "100%",  }}
+                className="h-8"
+                style={{ borderRadius: "100%" }}
                 src="https://img.icons8.com/?size=256&id=UjSURd7eHUYL&format=png"
               />
               <div>
@@ -196,8 +196,8 @@ const Weather = () => {
               style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
             >
               <img
-                  className="h-8"
-                  style={{ borderRadius: "100%",  }}
+                className="h-8"
+                style={{ borderRadius: "100%" }}
                 src="https://img.icons8.com/?size=256&id=pLiaaoa41R9n&format=png"
               />
               <div>
@@ -369,10 +369,11 @@ const Weather = () => {
 
               {ForecastModule()}
             </div>
-          </div>
-          
-          <div className="chart">
-            <canvas id="temperatureChart" width="400" height="100"></canvas>
+            <div className="p-2">
+              <div className="chart">
+                <canvas id="temperatureChart" width="400" height="100"></canvas>
+              </div>
+            </div>
           </div>
         </div>
       ) : (
