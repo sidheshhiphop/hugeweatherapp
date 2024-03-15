@@ -16,23 +16,21 @@ const Weather = () => {
   const storedUser = localStorage.getItem("loggedInUser");
   const parsedUser = storedUser ? JSON.parse(storedUser) : null;
   const [messageApi, contextHolder] = message.useMessage();
-  const [query, setQuery] = useState(parsedUser.prefered);
+  const [search, setSearch] = useState(parsedUser.prefered);
   const [weather, setWeather] = useState(null);
   const [prefered, setPrefered] = useState(parsedUser.prefered);
-  const [loggedInUser, setLoggedInUser] = useState(null);
   const [forecast, setForecast] = useState(null);
-  const [unit, setUnit] = useState("metric"); 
+  const [unit, setUnit] = useState("metric");
   const Navigate = useNavigate();
-  const UserValues = useSelector((state) => state);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const weatherResponse = await axios.get(
-          `${api.url}weather?q=${query}&units=${unit}&APPID=${api.key}`
+          `${api.url}weather?q=${search}&units=${unit}&APPID=${api.key}`
         );
         const forecastResponse = await axios.get(
-          `${api.url}forecast?q=${query}&units=${unit}&APPID=${api.key}`
+          `${api.url}forecast?q=${search}&units=${unit}&APPID=${api.key}`
         );
         setWeather(weatherResponse.data);
         setForecast(forecastResponse.data);
@@ -41,11 +39,10 @@ const Weather = () => {
       }
     };
 
-    if (query) {
+    if (search) {
       fetchData();
     }
-  }, [query, unit]);
-
+  }, [search, unit]);
 
   const savePreferredLocation = () => {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -61,7 +58,7 @@ const Weather = () => {
   };
 
   const DateFormat = (timestamp) => {
-    const date = new Date(timestamp * 1000); 
+    const date = new Date(timestamp * 1000);
     return date.toLocaleDateString(undefined, {
       weekday: "long",
       month: "long",
@@ -185,7 +182,7 @@ const Weather = () => {
 
     const dailyForecasts = forecast.list.filter(
       (item, index) => index % 8 === 0
-    ); // Daily forecasts
+    ); 
 
     return (
       <div className="forecast">
@@ -215,18 +212,18 @@ const Weather = () => {
 
   return (
     <div className="Main">
-           {contextHolder}
+      {contextHolder}
       {weather ? (
         <div>
           <div>
             <header class="text-white py-4 bg-blue-200">
               <div class="container mx-auto flex justify-between items-center">
                 <div class="flex items-center">
-                <img
-                          className="h-10 ml-4 "
-                          src="https://hugeitsolutions.com/images/logo/HugeLogo.png"
-                          alt="logo"
-                        />
+                  <img
+                    className="h-10 ml-4 "
+                    src="https://hugeitsolutions.com/images/logo/HugeLogo.png"
+                    alt="logo"
+                  />
                 </div>
 
                 <form>
@@ -257,8 +254,8 @@ const Weather = () => {
                   className="search-box"
                   type="text"
                   placeholder="Search city ..."
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />{" "}
               </div>
             </div>
@@ -292,7 +289,7 @@ const Weather = () => {
                     // className="mb-4"
                   />
                 </div>
-             
+
                 <div
                   style={{
                     display: "flex",
