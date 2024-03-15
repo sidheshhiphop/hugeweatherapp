@@ -235,7 +235,7 @@ const Weather = () => {
                     Logout
                   </button>
                 </form>
-                {/* Add Switch component to toggle between units */}
+                
               </div>
             </header>
           </div>
