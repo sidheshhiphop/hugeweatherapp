@@ -6,6 +6,7 @@ import { Button, Switch, message } from "antd"; // Import Switch from antd
 import { List, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Chart from "chart.js/auto";
 
 const api = {
   key: "bebc1c9bcc22a97d80b625d0407799b7",
@@ -32,8 +33,10 @@ const Weather = () => {
         const forecastResponse = await axios.get(
           `${api.url}forecast?q=${search}&units=${unit}&APPID=${api.key}`
         );
+       
         setWeather(weatherResponse.data);
         setForecast(forecastResponse.data);
+        updateChart(forecastResponse.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -43,6 +46,32 @@ const Weather = () => {
       fetchData();
     }
   }, [search, unit]);
+  const updateChart = (forecastData) => {
+    const ctx = document.getElementById("temperatureChart").getContext("2d");
+    const labels = forecastData.list.map((item) => DateFormat(item.dt));
+    const data = forecastData.list.map((item) => item.main.temp);
+    
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Temperature',
+          data: data,
+          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: false
+          }
+        }
+      }
+    });
+  };
 
   const savePreferredLocation = () => {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -311,6 +340,10 @@ const Weather = () => {
           <div className="patch">
             {WeatherModule()}
             {ForecastModule()}
+           
+          </div>
+          <div className="chart">
+          <canvas id="temperatureChart" width="400" height="100"></canvas> 
           </div>
         </div>
       ) : (

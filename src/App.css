@@ -1,6 +1,8 @@
 .Main{
   background: url("https://images.unsplash.com/photo-1592210454359-9043f067919b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   height: 100%;
+  background-repeat: no-repeat;
+ width: 100%;
 }
 .join{
   display: flex;
@@ -31,6 +33,12 @@
   opacity: 0.8;
   border-radius: 2%;
   padding: 1rem;
+}
+.chart{
+  background: white;
+  width: 100%;
+  opacity: 0.8;
+  
 }
 .patch{
   display: flex;
