@@ -142,7 +142,8 @@ const Weather = () => {
               }}
             >
               <img
-                style={{ borderRadius: "100%", height: "3rem" }}
+              className="h-8"
+              style={{ borderRadius: "100%",  }}
                 src="https://img.icons8.com/?size=256&id=HwGBDTAiOecf&format=png"
               />
               <div>
@@ -160,7 +161,8 @@ const Weather = () => {
               }}
             >
               <img
-                style={{ borderRadius: "100%", height: "3rem" }}
+                 className="h-8"
+                 style={{ borderRadius: "100%",  }}
                 src="  https://img.icons8.com/?size=256&id=51497&format=png"
               />
               <div>
@@ -179,7 +181,8 @@ const Weather = () => {
               style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
             >
               <img
-                style={{ borderRadius: "100%", height: "3rem" }}
+              className="h-8"
+                style={{ borderRadius: "100%",  }}
                 src="https://img.icons8.com/?size=256&id=UjSURd7eHUYL&format=png"
               />
               <div>
@@ -193,7 +196,8 @@ const Weather = () => {
               style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
             >
               <img
-                className="rounded-full h-12"
+                  className="h-8"
+                  style={{ borderRadius: "100%",  }}
                 src="https://img.icons8.com/?size=256&id=pLiaaoa41R9n&format=png"
               />
               <div>
