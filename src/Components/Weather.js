@@ -253,116 +253,120 @@ const Weather = () => {
       {weather ? (
         <div>
           <div>
-            <header class="text-white py-4 bg-blue-200">
-              <div class="container mx-auto flex justify-between items-center">
-                <div class="flex items-center">
-                  <img
-                    className="h-10 ml-4 "
-                    src="https://hugeitsolutions.com/images/logo/HugeLogo.png"
-                    alt="logo"
-                  />
-                </div>
+            <div>
+              <header class="text-white py-4 bg-blue-200">
+                <div class="container mx-auto flex justify-between items-center">
+                  <div class="flex items-center">
+                    <img
+                      className="h-10 ml-4 "
+                      src="https://hugeitsolutions.com/images/logo/HugeLogo.png"
+                      alt="logo"
+                    />
+                  </div>
 
-                <form>
-                  <button
-                    onClick={handleLogOut}
-                    type="submit"
-                    class="bg-sky-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded mr-4"
-                  >
-                    Logout
-                  </button>
-                </form>
-              </div>
-            </header>
-          </div>
-          <div class="lg:flex justify-evenly mt-4">
-            <div className="join">
-              <div>
-                <div class=" text-xl font-bold flex justify-center opacity-75 rounded">
-                  {" "}
-                  Welcome {localStorage.getItem("Current")}{" "}
+                  <form>
+                    <button
+                      onClick={handleLogOut}
+                      type="submit"
+                      class="bg-sky-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded mr-4"
+                    >
+                      Logout
+                    </button>
+                  </form>
                 </div>
-                <div class=" text-xl font-bold flex justify-center opacity-75 rounded">
-                  {" "}
-                  Search City Below{" "}
-                </div>
-                <Input
-                  className="search-box"
-                  type="text"
-                  placeholder="Search city ..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />{" "}
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <button
-                    onClick={handleSearchClick}
-                    class="bg-sky-500 mt-4 hover:bg-green-600 text-white font-semibold py-1 px-2 rounded mr-4 w-20"
-                  >
-                    {" "}
-                    Search
-                  </button>
-                </div>
-              </div>
+              </header>
             </div>
-
-            <div className="text-xl font-bold mt-2 lg:mt-0 ">
-              <div
-                style={{
-                  justifyContent: "center",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <div class=" text-xl font-bold flex justify-center opacity-75 rounded">
-                  {" "}
-                  Change preferred
-                </div>
-                <div class=" text-xl font-bold flex justify-center opacity-75 rounded">
-                  {" "}
-                  City Below{" "}
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
+            <div class="lg:flex justify-evenly mt-4">
+              <div className="join">
+                <div>
+                  <div class=" text-xl font-bold flex justify-center opacity-75 rounded">
+                    {" "}
+                    Welcome {localStorage.getItem("Current")}{" "}
+                  </div>
+                  <div class=" text-xl font-bold flex justify-center opacity-75 rounded">
+                    {" "}
+                    Search City Below{" "}
+                  </div>
                   <Input
                     className="search-box"
-                    value={prefered}
-                    onChange={(e) => setPrefered(e.target.value)}
-                    placeholder="preferred Location"
-                    // className="mb-4"
-                  />
+                    type="text"
+                    placeholder="Search city ..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />{" "}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <button
+                      onClick={handleSearchClick}
+                      class="bg-sky-500 mt-4 hover:bg-green-600 text-white font-semibold py-1 px-2 rounded mr-4 w-20"
+                    >
+                      {" "}
+                      Search
+                    </button>
+                  </div>
                 </div>
+              </div>
 
+              <div className="text-xl font-bold mt-2 lg:mt-0 ">
                 <div
                   style={{
-                    display: "flex",
                     justifyContent: "center",
+                    display: "flex",
+                    flexDirection: "column",
                   }}
                 >
-                  <button
-                    onClick={savePreferredLocation}
-                    class="bg-sky-500 mt-4 hover:bg-green-600 text-white font-semibold py-1 px-2 rounded mr-4 w-20"
-                  >
+                  <div class=" text-xl font-bold flex justify-center opacity-75 rounded">
                     {" "}
-                    Save
-                  </button>
+                    Change preferred
+                  </div>
+                  <div class=" text-xl font-bold flex justify-center opacity-75 rounded">
+                    {" "}
+                    City Below{" "}
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Input
+                      className="search-box"
+                      value={prefered}
+                      onChange={(e) => setPrefered(e.target.value)}
+                      placeholder="preferred Location"
+                      // className="mb-4"
+                    />
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <button
+                      onClick={savePreferredLocation}
+                      class="bg-sky-500 mt-4 hover:bg-green-600 text-white font-semibold py-1 px-2 rounded mr-4 w-20"
+                    >
+                      {" "}
+                      Save
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="lg:flex lg:mt-6 lg:p-8 gap-8">
-            <div className="p-2">{WeatherModule()}</div>
-            <div className="p-2">{ForecastModule()}</div>
+            <div className="lg:flex lg:mt-6 lg:p-8 gap-8 p-2">
+              {WeatherModule()}
+
+              {ForecastModule()}
+            </div>
           </div>
+          
           <div className="chart">
             <canvas id="temperatureChart" width="400" height="100"></canvas>
           </div>
