@@ -25,51 +25,54 @@ const Weather = () => {
   const Navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const weatherResponse = await axios.get(
-          `${api.url}weather?q=${search}&units=${unit}&APPID=${api.key}`
-        );
-        const forecastResponse = await axios.get(
-          `${api.url}forecast?q=${search}&units=${unit}&APPID=${api.key}`
-        );
-       
-        setWeather(weatherResponse.data);
-        setForecast(forecastResponse.data);
-        updateChart(forecastResponse.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
+    fetchData();
     if (search) {
       fetchData();
     }
-  }, [search, unit]);
+  }, [unit]);
+  const fetchData = async () => {
+    try {
+      const weatherResponse = await axios.get(
+        `${api.url}weather?q=${search}&units=${unit}&APPID=${api.key}`
+      );
+      const forecastResponse = await axios.get(
+        `${api.url}forecast?q=${search}&units=${unit}&APPID=${api.key}`
+      );
+
+      setWeather(weatherResponse.data);
+      setForecast(forecastResponse.data);
+      updateChart(forecastResponse.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   const updateChart = (forecastData) => {
     const ctx = document.getElementById("temperatureChart").getContext("2d");
     const labels = forecastData.list.map((item) => DateFormat(item.dt));
     const data = forecastData.list.map((item) => item.main.temp);
-    
+
     new Chart(ctx, {
       type: "line",
       data: {
         labels: labels,
-        datasets: [{
-          label: 'Temperature',
-          data: data,
-          borderColor: 'rgba(75, 192, 192, 1)',
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderWidth: 1
-        }]
+        datasets: [
+          {
+            label: "Temperature",
+            data: data,
+            borderColor: "rgba(75, 192, 192, 1)",
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
         scales: {
           y: {
-            beginAtZero: false
-          }
-        }
-      }
+            beginAtZero: false,
+          },
+        },
+      },
     });
   };
 
@@ -143,7 +146,7 @@ const Weather = () => {
                 src="https://img.icons8.com/?size=256&id=HwGBDTAiOecf&format=png"
               />
               <div>
-                <div className="text-2xl">
+                <div className="lg:text-2xl text-base">
                   <b> Weather</b>
                 </div>
                 {weather.weather[0].main}
@@ -161,7 +164,7 @@ const Weather = () => {
                 src="  https://img.icons8.com/?size=256&id=51497&format=png"
               />
               <div>
-                <div className="text-2xl">
+                <div className="lg:text-2xl text-base">
                   <b>Pressure</b>
                 </div>
                 {weather.main.pressure}
@@ -180,7 +183,7 @@ const Weather = () => {
                 src="https://img.icons8.com/?size=256&id=UjSURd7eHUYL&format=png"
               />
               <div>
-                <div className="text-2xl">
+                <div className="lg:text-2xl text-base">
                   <b>Humidity</b>
                 </div>
                 {weather.main.humidity} %
@@ -190,11 +193,11 @@ const Weather = () => {
               style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
             >
               <img
-                style={{ borderRadius: "100%", height: "3rem" }}
+                className="rounded-full h-12"
                 src="https://img.icons8.com/?size=256&id=pLiaaoa41R9n&format=png"
               />
               <div>
-                <div className="text-2xl">
+                <div className="lg:text-2xl text-base">
                   <b>Wind Speed</b>
                 </div>
                 {weather.wind.speed} m/s
@@ -211,7 +214,7 @@ const Weather = () => {
 
     const dailyForecasts = forecast.list.filter(
       (item, index) => index % 8 === 0
-    ); 
+    );
 
     return (
       <div className="forecast">
@@ -237,6 +240,11 @@ const Weather = () => {
 
   const handleLogOut = () => {
     Navigate("/login");
+  };
+  const handleSearchClick = () => {
+    if (search) {
+      fetchData();
+    }
   };
 
   return (
@@ -264,11 +272,10 @@ const Weather = () => {
                     Logout
                   </button>
                 </form>
-                
               </div>
             </header>
           </div>
-          <div class="flex justify-evenly mt-4">
+          <div class="lg:flex justify-evenly mt-4">
             <div className="join">
               <div>
                 <div class=" text-xl font-bold flex justify-center opacity-75 rounded">
@@ -286,9 +293,24 @@ const Weather = () => {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />{" "}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <button
+                    onClick={handleSearchClick}
+                    class="bg-sky-500 mt-4 hover:bg-green-600 text-white font-semibold py-1 px-2 rounded mr-4 w-20"
+                  >
+                    {" "}
+                    Search
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="text-xl font-bold ">
+
+            <div className="text-xl font-bold mt-2 lg:mt-0 ">
               <div
                 style={{
                   justifyContent: "center",
@@ -337,13 +359,12 @@ const Weather = () => {
             </div>
           </div>
 
-          <div className="patch">
-            {WeatherModule()}
-            {ForecastModule()}
-           
+          <div className="lg:flex lg:mt-6 lg:p-8 gap-8">
+            <div className="p-2">{WeatherModule()}</div>
+            <div className="p-2">{ForecastModule()}</div>
           </div>
           <div className="chart">
-          <canvas id="temperatureChart" width="400" height="100"></canvas> 
+            <canvas id="temperatureChart" width="400" height="100"></canvas>
           </div>
         </div>
       ) : (

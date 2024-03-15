@@ -32,7 +32,7 @@ function LogIn() {
   return (
     <div>
       <section className="gradient-form h-full bg-white dark:bg-neutral-700">
-        <div className="container h-full p-24">
+        <div className="container lg:h-full lg:p-24 p-10 h-screen">
           <div className="flex h-full flex-wrap items-center justify-center ">
             <div className="w-full">
               <div className="block rounded-lg bg-white shadow-lg ">
