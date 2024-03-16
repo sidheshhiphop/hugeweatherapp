@@ -33,7 +33,7 @@ function Signup() {
     <div>
       {contextHolder}
       <section className="gradient-form h-full bg-white dark:bg-neutral-700">
-        <div className="container lg:h-full h-screen p-12">
+        <div className="container  p-6 lg:p-0 h-screen">
           <div className="flex h-full flex-wrap items-center justify-center ">
             <div className="w-full">
               <div className="block rounded-lg bg-white shadow-lg ">
