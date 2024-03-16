@@ -67,6 +67,7 @@ const Weather = () => {
         ],
       },
       options: {
+        maintainAspectRatio: false,
         scales: {
           y: {
             beginAtZero: false,
@@ -371,7 +372,8 @@ const Weather = () => {
             </div>
             <div className="p-2">
               <div className="chart">
-                <canvas id="temperatureChart" width="400" height="100"></canvas>
+            
+                <canvas id="temperatureChart" class="h-full w-full lg:h-80 lg:w-full" ></canvas>
               </div>
             </div>
           </div>
